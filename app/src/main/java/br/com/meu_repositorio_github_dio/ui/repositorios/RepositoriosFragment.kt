@@ -5,16 +5,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import br.com.meu_repositorio_github_dio.databinding.FragmentRepositoriosBinding
 import com.google.android.material.snackbar.Snackbar
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import org.koin.androidx.viewmodel.ext.android.viewModel
 
+@AndroidEntryPoint
 class RepositoriosFragment : Fragment() {
 
-    private val repositoriosViewModel: RepositoriosViewModel by viewModel()
+    private val repositoriosViewModel: RepositoriosViewModel by viewModels()
     private lateinit var repositorioAdapter: RepositorioAdapter
     private var _binding: FragmentRepositoriosBinding? = null
     private val binding get() = _binding!!

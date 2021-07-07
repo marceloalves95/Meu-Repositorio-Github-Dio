@@ -3,12 +3,15 @@ package br.com.meu_repositorio_github_dio.ui.repositorios
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.meu_repositorio_github_dio.network.repository.Repository
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-class RepositoriosViewModel(private val repository: Repository) : ViewModel() {
+@HiltViewModel
+class RepositoriosViewModel @Inject constructor(private val repository: Repository) : ViewModel() {
 
     private val _state = MutableStateFlow<RepositoryState>(RepositoryState.Empty)
     val state: StateFlow<RepositoryState> = _state

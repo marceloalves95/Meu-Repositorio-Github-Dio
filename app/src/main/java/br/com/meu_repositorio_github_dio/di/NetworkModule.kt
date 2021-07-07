@@ -2,17 +2,26 @@ package br.com.meu_repositorio_github_dio.di
 
 import br.com.meu_repositorio_github_dio.network.api.GithubApi
 import br.com.meu_repositorio_github_dio.utils.Constants.BASE_URL
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
 /**
  * @author RubioAlves
  * Created 07/07/2021 at 15:55
  */
+@InstallIn(SingletonComponent::class)
+@Module
 object NetworkModule {
 
+    @Singleton
+    @Provides
     fun getRetrofit(): GithubApi {
 
         val httpLoggingInterceptor = HttpLoggingInterceptor()
