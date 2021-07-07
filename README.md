@@ -17,6 +17,7 @@ git clone https://github.com/marceloalves95/Meu-Repositorio-Github-Dio.git --bra
 git clone https://github.com/marceloalves95/Meu-Repositorio-Github-Dio.git --branch Meu-Repositorio-Github-Dio-Dagger-Hilt
 ```
 #### Instalação com o DaggerHilt
+Os títulos abaixo mostram as principais classes do projeto.
 
 #### Dependência
 
