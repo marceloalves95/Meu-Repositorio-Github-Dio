@@ -161,8 +161,6 @@ interface GithubApi {
 }
 ```
 
-
-
 ##### Repository
 
 Crie uma classe chamada `Repository`
@@ -178,7 +176,7 @@ class Repository(private val api:GithubApi) {
 
 ##### ViewModel
 
-Crie um classe chamada `RepositoriosViewModel`:
+Crie um classe chamada `RepositoriosViewModel.kt` e `UserViewModel.kt`:
 
 ```kotlin
 class RepositoriosViewModel(private val repository: Repository) : ViewModel() {
@@ -213,6 +211,42 @@ class RepositoriosViewModel(private val repository: Repository) : ViewModel() {
 
     }
 
+
+}
+```
+
+```kotlin
+class UserViewModel(private val repository: Repository) : ViewModel() {
+
+    private val _state = MutableStateFlow<UIState>(UIState.Empty)
+    val state: StateFlow<UIState> = _state
+
+    private fun emit(value: UIState) {
+        _state.value = value
+    }
+
+    fun getUser() {
+
+        viewModelScope.launch {
+
+            try {
+                emit(UIState.Loading(true))
+                delay(1000)
+                val response = repository.getUser()
+                with(response) {
+                    if (isSuccessful) {
+                        emit(UIState.Sucess(body()))
+                    } else {
+                        emit(UIState.Error("Erro: ${code()}"))
+                    }
+                }
+            } catch (exception: Exception) {
+                emit(UIState.Error("Erro: ${exception.message}"))
+            }
+            emit(UIState.Loading(false))
+        }
+
+    }
 
 }
 ```
